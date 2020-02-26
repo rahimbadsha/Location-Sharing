@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "49993036047",
+    "firebase_url": "https://realtimelocationapp-2020.firebaseio.com",
+    "project_id": "realtimelocationapp-2020",
+    "storage_bucket": "realtimelocationapp-2020.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:49993036047:android:e3cd9bc864b95a7d984e7a",
+        "android_client_info": {
+          "package_name": "com.example.realtimelocationapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "49993036047-armd2hr2s2o1d423e0iquu2ercl49rup.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.realtimelocationapp",
+            "certificate_hash": "21e298b7abbfeef2c6a74018283225e2ba68261c"
+          }
+        },
+        {
+          "client_id": "49993036047-o9h5bsui90c69n120e1lniv12hap9tol.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDSS4dBaId8_EiXWkQrvQuRE-Ag8CKvHWY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "49993036047-o9h5bsui90c69n120e1lniv12hap9tol.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
