@@ -191,7 +191,7 @@ public class AllPeopleActivity extends AppCompatActivity implements IFirebaseLoa
 
                         if (model.getEmail().equals(Common.loggedUser.getEmail()))
                         {
-                            Toast.makeText(AllPeopleActivity.this, "It's you", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(AllPeopleActivity.this, "It's you  ", Toast.LENGTH_SHORT).show();
 
                         }
                         else
