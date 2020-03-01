@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">iSharing</string>
+    <string name="app_name">Friend Zone</string>
     <string name="title_activity_home">Friends List</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>

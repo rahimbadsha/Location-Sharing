@@ -57,6 +57,7 @@ public class MyFCMService extends FirebaseMessagingService {
         friend_request.child(user.getUid()).setValue(user);
     }
 
+    
     private void sendNotification(RemoteMessage remoteMessage) {
 
         Map<String, String> data = remoteMessage.getData();

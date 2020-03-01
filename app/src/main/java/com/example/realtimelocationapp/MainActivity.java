@@ -77,10 +77,7 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onPermissionDenied(PermissionDeniedResponse response) {
 
-                        Toast.makeText(MainActivity.this, "Your must accept permission to use app", Toast.LENGTH_LONG);
-                        Intent intent = new Intent(MainActivity.this, OnBoardingActivity.class);
-                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                        startActivity(intent);
+                        Toast.makeText(MainActivity.this, "Must need to accept the location permission to using this app", Toast.LENGTH_SHORT).show();
                     }
 
                     @Override

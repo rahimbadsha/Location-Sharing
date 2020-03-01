@@ -89,7 +89,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         View headerView = navigationView.getHeaderView(0);
         TextView txt_user_logged = headerView.findViewById(R.id.txt_logged_email);
         txt_user_logged.setText(Common.loggedUser.getEmail());
-       // txt_user_logged.setText(Common.CHECK_LOGGED_USER);
 
         //View
         //init view
@@ -361,11 +360,26 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         } else if (id == R.id.nav_sign_out) {
 
             signOut();
+        } else if (id == R.id.nav_share_app) {
+
+            shareApp();
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private void shareApp() {
+
+        Intent sharingIntent = new Intent(Intent.ACTION_SEND);
+        sharingIntent.setType("text/plain");
+
+        String shareBody = "I invite you to FriendZone. Click the link below to add me.\n" +
+                " https://github.com/rahimbadsha/Location-Sharing";
+        sharingIntent.putExtra(Intent.EXTRA_SUBJECT, "Find Friends and Family With FriendZone");
+        sharingIntent.putExtra(Intent.EXTRA_TEXT, shareBody);
+        startActivity(Intent.createChooser(sharingIntent, "Share Via"));
     }
 
     private void signOut() {

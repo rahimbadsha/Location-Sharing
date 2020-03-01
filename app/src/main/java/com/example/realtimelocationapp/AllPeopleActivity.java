@@ -1,13 +1,6 @@
 package com.example.realtimelocationapp;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.DividerItemDecoration;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.app.AlertDialog;
-import android.app.DownloadManager;
 import android.content.DialogInterface;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -17,6 +10,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.realtimelocationapp.Interface.IFirebaseLoadDone;
 import com.example.realtimelocationapp.Interface.IRecycleItemClickListener;
@@ -41,7 +40,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import io.reactivex.Scheduler;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.functions.Consumer;
@@ -165,7 +163,6 @@ public class AllPeopleActivity extends AppCompatActivity implements IFirebaseLoa
 
         Query query = FirebaseDatabase.getInstance().getReference().child(Common.USER_INFORMATION);
 
-
         FirebaseRecyclerOptions<User> options = new FirebaseRecyclerOptions.Builder<User>()
                 .setQuery(query, User.class)
                 .build();
@@ -174,8 +171,10 @@ public class AllPeopleActivity extends AppCompatActivity implements IFirebaseLoa
             @Override
             protected void onBindViewHolder(@NonNull UserViewHolder holder, int position, @NonNull final User model) {
 
+
                 if (model.getEmail().equals(Common.loggedUser.getEmail()))
                 {
+                    //holder.txt_user_email.
                     holder.txt_user_email.setText(new StringBuilder(model.getEmail()).append(" (me)"));
                     holder.txt_user_email.setTypeface(holder.txt_user_email.getTypeface(), Typeface.ITALIC);
 
@@ -190,7 +189,15 @@ public class AllPeopleActivity extends AppCompatActivity implements IFirebaseLoa
                     @Override
                     public void onItemClickListener(View view, int position) {
 
-                        showDialogRequest(model);
+                        if (model.getEmail().equals(Common.loggedUser.getEmail()))
+                        {
+                            Toast.makeText(AllPeopleActivity.this, "It's you", Toast.LENGTH_SHORT).show();
+
+                        }
+                        else
+                        {
+                            showDialogRequest(model);
+                        }
                     }
                 });
             }
@@ -215,7 +222,7 @@ public class AllPeopleActivity extends AppCompatActivity implements IFirebaseLoa
     private void showDialogRequest(final User model) {
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(this, R.style.MyRequestDialog);
         alertDialog.setTitle("Request Friend");
-        alertDialog.setMessage("Do you want to sent request friend to " + model.getEmail());
+        alertDialog.setMessage("Do you want to snd request friend to " + model.getEmail());
 
         alertDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
             @Override
@@ -229,10 +236,11 @@ public class AllPeopleActivity extends AppCompatActivity implements IFirebaseLoa
             public void onClick(DialogInterface dialogInterface, int which) {
 
                 //Add to ACCEPT LIST
-                DatabaseReference acceptList = FirebaseDatabase.getInstance()
+                final DatabaseReference acceptList = FirebaseDatabase.getInstance()
                         .getReference(Common.USER_INFORMATION)
                         .child(Common.loggedUser.getUid())
                         .child(Common.ACCEPT_LIST);
+
                 acceptList.orderByKey().equalTo(model.getUid())
                         .addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
@@ -246,6 +254,7 @@ public class AllPeopleActivity extends AppCompatActivity implements IFirebaseLoa
                             @Override
                             public void onCancelled(@NonNull DatabaseError databaseError) {
 
+                                Toast.makeText(AllPeopleActivity.this, "Error in the Database", Toast.LENGTH_SHORT).show();
                             }
                         });
             }

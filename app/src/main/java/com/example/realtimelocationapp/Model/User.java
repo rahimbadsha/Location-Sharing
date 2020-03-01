@@ -40,6 +40,7 @@ public class User {
         return acceptList;
     }
 
+
     public void setAcceptList(HashMap<String, User> acceptList) {
         this.acceptList = acceptList;
     }
